@@ -20,13 +20,13 @@ class Dev(Configuration):
 
 	ALLOWED_HOSTS = ["*"]
 
-	X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
-	CSRF_COOKIE_SAMESITE = None
-	CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io']
-	CSRF_COOKIE_SECURE = True
-	SESSION_COOKIE_SECURE = True
-	CSRF_COOKIE_SAMESITE = 'None'
-	SESSION_COOKIE_SAMESITE = 'None'
+	# X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
+	# CSRF_COOKIE_SAMESITE = None
+	# CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io']
+	# CSRF_COOKIE_SECURE = True
+	# SESSION_COOKIE_SECURE = True
+	# CSRF_COOKIE_SAMESITE = 'None'
+	# SESSION_COOKIE_SAMESITE = 'None'
 
 	# Application definition
 
@@ -41,6 +41,7 @@ class Dev(Configuration):
 		'crispy_forms',
 		'crispy_bootstrap5',
 		'debug_toolbar',
+		'blango_auth'
 	]
 
 	CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -49,15 +50,17 @@ class Dev(Configuration):
 
 	INTERNAL_IPS = ["192.168.11.179"]
 
+	AUTH_USER_MODEL = "blango_auth.User"
+
 	MIDDLEWARE = [
 		"debug_toolbar.middleware.DebugToolbarMiddleware",
 		'django.middleware.security.SecurityMiddleware',
 		'django.contrib.sessions.middleware.SessionMiddleware',
 		'django.middleware.common.CommonMiddleware',
-		# 'django.middleware.csrf.CsrfViewMiddleware',
+		'django.middleware.csrf.CsrfViewMiddleware',
 		'django.contrib.auth.middleware.AuthenticationMiddleware',
 		'django.contrib.messages.middleware.MessageMiddleware',
-		# 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+		'django.middleware.clickjacking.XFrameOptionsMiddleware',
 	]
 
 	ROOT_URLCONF = 'BlangoPro.urls'
