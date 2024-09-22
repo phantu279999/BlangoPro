@@ -31,6 +31,7 @@ class Dev(Configuration):
 	# Application definition
 
 	INSTALLED_APPS = [
+		"django.contrib.sites",
 		'django.contrib.admin',
 		'django.contrib.auth',
 		'django.contrib.contenttypes',
@@ -41,8 +42,20 @@ class Dev(Configuration):
 		'crispy_forms',
 		'crispy_bootstrap5',
 		'debug_toolbar',
-		'blango_auth'
+		'blango_auth',
+
+		'allauth',
+		'allauth.account',
+		'allauth.socialaccount',
+		'allauth.socialaccount.providers.google',
 	]
+
+	SITE_ID = 1
+
+	ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+	ACCOUNT_EMAIL_REQUIRED = True
+	ACCOUNT_USERNAME_REQUIRED = False
+	ACCOUNT_AUTHENTICATION_METHOD = "email"
 
 	CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -65,6 +78,7 @@ class Dev(Configuration):
 		'django.contrib.auth.middleware.AuthenticationMiddleware',
 		'django.contrib.messages.middleware.MessageMiddleware',
 		'django.middleware.clickjacking.XFrameOptionsMiddleware',
+		'allauth.account.middleware.AccountMiddleware',
 	]
 
 	ROOT_URLCONF = 'BlangoPro.urls'
