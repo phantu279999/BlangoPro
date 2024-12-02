@@ -5,7 +5,10 @@
     {% row %}
         {% col %}
             <p>Logged in as {{ request.user }}.</p>
-            <p><a href="{% url "logout" %}">Log Out</a></p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+            </form>
         {% endcol %}
     {% endrow %}
 {% endblock content %}
