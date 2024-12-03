@@ -5,26 +5,34 @@
     {% if post.author.profile %}
         {% row %}
             {% col %}
-                <h4>About the author</h4>
+                <h5>About the author</h5>
                 <p>{{ post.author.profile.bio }}</p>
             {% endcol %}
         {% endrow %}
     {% endif %}
     {% row %}
-        <div class="col">
+        {% col %}
             {% include "blog/post-byline.html" %}
-        </div>
+        {% endcol %}
     {% endrow %}
     {% row %}
-        <div class="col">
+        {% col %}
             {{ post.content|safe }}
-        </div>
+        {% endcol %}
     {% endrow %}
+    <hr>
+    <span>Tags:
+        {% for tag in post.tags.all %}
+            {{ tag.value }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            No tags
+        {% endfor %}
+    </span>
+    <hr>
     {% row %}
         {% col %}
             {% recent_posts post %}
         {% endcol %}
     {% endrow %}
-
     {% include "blog/post-comments.html" %}
 {% endblock %}

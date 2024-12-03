@@ -1,6 +1,15 @@
 {% load blog_extras %}
 {% load blog_extras crispy_forms_tags %}
 <h4>Comments</h4>
+{% if request.user.is_active %}
+{% row "mt-4" %}
+    {% col %}
+        <h5>Add Comment</h5>
+        {%  crispy comment_form %}
+    {% endcol %}
+{% endrow %}
+{% endif %}
+<h4>List comments</h4>
 {% for comment in post.comments.all %}
 {% row "border-top pt-2" %}
     {% col %}
@@ -19,11 +28,3 @@
         {% endcol %}
     {% endrow %}
 {% endfor %}
-{% if request.user.is_active %}
-{% row "mt-4" %}
-    {% col %}
-        <h4>Add Comment</h4>
-        {%  crispy comment_form %}
-    {% endcol %}
-{% endrow %}
-{% endif %}
