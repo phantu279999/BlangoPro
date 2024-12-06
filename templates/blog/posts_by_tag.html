@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load blog_extras %}
+
+{% block style %}
+    h1 {
+        text-align: center;
+    }
+{% endblock %}
+
+{% block content %}
+    <h1>Tag: {{ tag.value }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

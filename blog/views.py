@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 
-from blog.models import Post
+from blog.models import Post, Tag
 from blog.forms import CommentForm
 import logging
 
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def index(request):
 	posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
 	logger.debug("Got %d posts", len(posts))
-	return render(request, 'blog/index.html', {'posts': posts})
+	return render(request, 'blog/index.html', {'posts': posts, 'x': x})
 
 
 def post_detail(request, slug):
@@ -42,3 +42,8 @@ def get_ip(request):
 	from django.http import HttpResponse
 	return HttpResponse(request.META['REMOTE_ADDR'])
 
+
+def list_post_by_tag(request, pk):
+	tag = Tag.objects.get(pk=pk)
+	posts = tag.posts.all()
+	return render(request, 'blog/posts_by_tag.html', {'tag': tag, 'posts': posts})

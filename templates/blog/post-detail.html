@@ -23,7 +23,7 @@
     <hr>
     <span>Tags:
         {% for tag in post.tags.all %}
-            {{ tag.value }}{% if not forloop.last %}, {% endif %}
+            <a href="{% url 'posts-tag' pk=tag.pk %}">{{ tag.value }}</a>{% if not forloop.last %}, {% endif %}
         {% empty %}
             No tags
         {% endfor %}
