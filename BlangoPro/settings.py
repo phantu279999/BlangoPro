@@ -39,11 +39,13 @@ class Dev(Configuration):
 		'django.contrib.messages',
 		'django.contrib.staticfiles',
 		'blog',
+
 		'crispy_forms',
 		'crispy_bootstrap5',
 		'debug_toolbar',
 		'blango_auth',
 		'django_registration',
+		'rest_framework',
 
 		'allauth',
 		'allauth.account',
