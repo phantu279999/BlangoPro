@@ -9,6 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         readonly = ["modified_at", "created_at"]
+        fields = '__all__'
 
     # def validate(self, data):
     #     if not data.get("slug"):
