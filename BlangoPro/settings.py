@@ -46,6 +46,7 @@ class Dev(Configuration):
 		'blango_auth',
 		'django_registration',
 		'rest_framework',
+		'rest_framework.authtoken',
 
 		'allauth',
 		'allauth.account',
@@ -205,6 +206,14 @@ class Dev(Configuration):
 			"handlers": ["console"],
 			"level": "DEBUG",
 		}
+	}
+
+	REST_FRAMEWORK = {
+		"DEFAULT_AUTHENTICATION_CLASSES": [
+			"rest_framework.authentication.BasicAuthentication",
+			"rest_framework.authentication.SessionAuthentication",
+			"rest_framework.authentication.TokenAuthentication",
+		]
 	}
 
 
